@@ -9,7 +9,17 @@ const calc = (a, actionId, b) => {
     if (!actions.includes(actionId)) 
         return alert("Error! Incorrect action id value")
 
-    return alert(eval(a + actionId + b));
+    if (actionId === '*') return alert(a * b)
+    if (actionId === '+') return alert(a + b)
+    if (actionId === '-') return alert(a - b)
+    if (actionId === '/') {
+        if (b === 0) return alert("Error! Division by zero is not possible")
+        return alert(a / b)
+    }
+
+    if (actionId === '%') return alert(a % b)
+    if (actionId === '**') return alert(a ** b)
+
 }
 
 
@@ -29,8 +39,8 @@ const createForm = () => {
         event.preventDefault();
 
         const actionId = form.querySelector('#operator').value,
-                     a = form.querySelector('#firstValue').value,
-                     b = form.querySelector('#secondValue').value;
+                     a = Number(form.querySelector('#firstValue').value),
+                     b = Number(form.querySelector('#secondValue').value);
 
         calc(a, actionId, b);
     }
